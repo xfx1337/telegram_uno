@@ -81,7 +81,6 @@ def send_text(message):
     if message.text.lower() == "lobby":
         print("registered")
         Lobby.append(message.chat.id)
-        print("Registered")
         if len(Lobby) >= 2:
             pass
         else:
@@ -105,9 +104,193 @@ def send_text(message):
         Player2_cards = int("7")
         Player_now_cards = int("7")
         def main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+            def classic_true(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+                if (Player_now_UCard_Number == "+4") or (Player_now_UCard_Number == "change") or (Player_now_UCard_Number == "+2") or (Player_now_UCard_Number == "pass") or (Player_now_UCard_Number == "reverse"):
+                    for i in Lobby:
+                        bot.send_message(i, "Карта Игрока:")
+                        bot.send_message(i, choosed[-1])
+                    if choosed[-1] == "+4":
+                        if Lobby_now == Lobby[-2]:
+                            Player1_cards = int(Player1_cards) - int("1")
+                            Player2_cards = int(Player2_cards) + int("4")
+                        color_send = bot.send_message(Lobby[-2], "Выбери цвет(blue, red, green, yellow)")
+                        bot.register_next_step_handler(color_send, pluse4_1_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message))
+                        def pluse4_1_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+                            color = message.text
+                            Player_last_UCard_Color = color
+                        for i in range(4):
+                            Player2_deck.append(choose_card())
+                            Player1_deck.remove(choosed)
+                        ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                        if Lobby_now == Lobby[-1]:
+                            Player2_cards = int(Player2_cards) - int("1")
+                            Player1_cards = int(Player1_cards) + int("4")
+                        color_send = bot.send_message(Lobby[-1], "Выбери цвет(blue, red, green, yellow)")
+                        bot.register_next_step_handler(color_send, pluse4_2_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message))
+                        def pluse4_2_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+                            color = message.text
+                            Player_last_UCard_Color = color
+                        for i in range(4):
+                            Player2_deck.append(choose_card())
+                            Player1_deck.remove(choosed)
+                        ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                    if choosed[1] == "change":
+                        if Lobby_now == Lobby[-2]:
+                            Lobby_now = Lobby[-1]
+                            Player1_cards = int(Player1_cards) - int("1")
+                            color_ask = bot.send_message(Lobby[-2])
+                            bot.register_next_step_handler(color_ask, change_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message))
+                        if Lobby_now == Lobby[-1]:
+                            Lobby_now = Lobby[-2]
+                            Player2_cards = int(Player2_cards) - int("1")
+                            color_ask = bot.send_message(Lobby[-1], "Введите цвет!:")
+                            bot.register_next_step_handler(color_ask, change_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message))
+                        def change_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+                            color = message.text
+                            Player_last_UCard_Color = color
+                            Player1_deck.remove(choosed)
+                            for i in Lobby:
+                                bot.send_message(i, "Игрок 2 ходит")
+                            ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                        def change_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+                            color = message.text
+                            Player_last_UCard_Color = color
+                            Player2_deck.remove(choosed)
+                            for i in Lobby:
+                                bot.send_message(i, "Игрок 1 ходит")
+                            ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                    if choosed[-2] == "pass":
+                        if Lobby_now == Lobby[-2]:
+                            Player1_cards = int(Player2_cards) - int("1")
+                            Player1_deck.remove(choosed)
+                            for i in Lobby:
+                                bot.send_message(i, "Игрок 1 ходит")
+                            ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                        if Lobby_now == Lobby[-1]:
+                            Player2_cards = int(Player2_cards) - int("1")
+                            Player2_deck.remove(choosed)
+                            for i in Lobby:
+                                bot.send_message(i, "Игрок 2 ходит")
+                            ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                    if choosed[1] == "+2":
+                        if Lobby_now == Lobby[-2]:
+                            Player1_cards = int(Player1_cards) - int("1")
+                            Player2_cards = int(Player2_cards) + int("2")
+                            for i in range(2):
+                                Player2_deck.append(choose_card())
+                            Player1_deck.remove(choosed)
+                            ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                        if Lobby_now == Lobby[-1]:
+                            Player2_cards = int(Player2_cards) - int("1")
+                            Player2_deck.remove(choosed)
+                            for i in Lobby:
+                                Player1_deck.append(choose_card())
+                            ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                    else:
+                        for i in Lobby:
+                            bot.send_message(i, "Цвет карты игрока")
+                            bot.send_message(i, Player_now_UCard_Color)
+                            bot.send_message(i, "Номер карты игрока")
+                            bot.send_message(i, Player_now_UCard_Number)
+                        if Lobby_now == Lobby[-2]:
+                            PNC = int(PNC) - int("1")
+                            Player1_cards = PNC
+                            try:
+                                Player1_deck.remove(choosed)
+                                if int(Player1_cards) == int("0"):
+                                    for i in Lobby:
+                                        bot.send_message(i, "Игрок 1 выйграл!!!")
+                                PNC = int(Player2_cards)
+                                Lobby_now = Lobby[-1]
+                                Player_last_UCard_Number = "x"
+                                Player_last_UCard_Color = "x"
+                                Player_last_UCard_Number = Player_now_UCard_Number
+                                Player_last_UCard_Color = Player_now_UCard_Color
+                                for i in Lobby:
+                                    bot.send_message(i, "Игрок 2 ходит")
+                                ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                            except:
+                                ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                        elif Lobby_now == Lobby[-1]:
+                            PNC = int(PNC) - int("1")
+                            Player2_cards = PNC
+                            try:
+                                Player2_deck.remove(choosed)
+                                if int(len(Player2_deck)) == int("0"):
+                                    for i in Lobby:
+                                        bot.send_message(i, "Игрок 2 выйграл!!!")
+                                    PNC = int(Player1_cards)
+                                    Lobby_now = Lobby[-2]
+                                    Player_last_UCard_Number = "x"
+                                    Player_last_UCard_Color = "x"
+                                    Player_last_UCard_Number = Player_now_UCard_Number
+                                    Player_last_UCard_Color = Player_now_UCard_Color
+                                    for i in Lobby:
+                                        bot.send_message(i, "Игрок 1 ходит")
+                                    ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                            except:
+                                ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+
+
+
+
+
+
+
+
+
+
+
+
+
+            def classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+                if Lobby_now == Lobby[-2]:
+                    PNC = len(Player1_deck)
+                if Lobby_now == Lobby[-1]:
+                    PNC = len(Player2_deck)
+                if (Player_now_UCard_Color == Player_last_UCard_Color) or (Player_now_UCard_Number == Player_last_UCard_Number):
+                    classic_true(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                elif (Player_last_UCard_Color == "x") or (Player_now_UCard_Number == "change") or (Player_now_UCard_Number == "+4"):
+                    classic_true(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                else:
+                    print("")
+
+
+
+
+
+
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
-                print("asked")
-                print(choosed)
+                if message.text.lower == "lobby":
+                    return
+                else:
+                    pass
+                if message.text == "take":
+                    Player1_deck.append(choose_card())
+                    Player1_cards = int(Player1_cards) + int("1")
+                    ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                else:
+                    choosed = Player1_deck[int(message.text)]
+                    bot.send_message(Lobby[-2], choosed)
+                    Player_now_UCard_Color = choosed[-1]
+                    Player_now_UCard_Number = choosed[-2]
+                    classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+            def ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
+                if message.text.lower == "lobby":
+                    return
+                else:
+                    pass
+                if message.text == "take":
+                    Player2_deck.append(choose_card())
+                    Player2_cards = int(Player2_cards) + int("1")
+                    ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                else:
+                    choosed = Player1_deck[int(message.text)]
+                    bot.send_message(Lobby[-1], choosed)
+                    Player_now_UCard_Color = choosed[-1]
+                    Player_now_UCard_Number = choosed[-2]
+                    classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                
 
 
 
