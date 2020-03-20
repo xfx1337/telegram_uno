@@ -67,6 +67,7 @@ def choose_card():
     card_nw = random.choice(cards)
     return card_nw
 import os
+import telebot
 from telebot import *
 bot = telebot.TeleBot('964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk')
 @bot.message_handler(commands=['start'])
