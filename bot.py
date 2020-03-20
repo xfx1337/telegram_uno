@@ -79,8 +79,10 @@ def send_text(message):
     if message.text.lower() == "lobby":
         Lobby.append(message.chat.id)
         print("Registered")
-        while len(Lobby) < 2:
-            print("Not len")
+        if len(Lobby) >= 2:
+            pass
+        else:
+            send_text()
         Player1_deck = []
         Player2_deck = []
         print("Len bigger then")
