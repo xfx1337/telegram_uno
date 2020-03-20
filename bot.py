@@ -79,6 +79,7 @@ def send_text(message):
         user = message.chat.id
         f = open ("players.txt", "a")
         f.write(str(user))
+        count = 0
         with open("players.txt", "r") as f:
             for line in f:
                 count += 1
