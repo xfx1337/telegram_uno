@@ -78,32 +78,28 @@ def start_message(message):
 def send_text(message):
     if message.text.lower() == "lobby":
         print("Registered")
-        def lobby_test():
-            user = message.chat.id
-            lobby.append(user)
-            print("Lobby test")
-        if len(lobby) > 1:
-            Player1_deck = []
-            Player2_deck = []
-            print("Len bigger then")
-            for i in range(7):
-                Player1_deck.append(choose_card())
-            for i in range(7):
-                Player2_deck.append(choose_card())
-            PNC = int("7")
-            Player_now_UCard_Color = "x"
-            Player_now_UCard_Number = "x"
-            Player_last_UCard_Color = "x"
-            Player_last_UCard_Number = "x"
-            nw = ["start"]
-            choosed = []
-            Lobby_now = Lobby[1]
-            Player1_cards = int("7")
-            Player2_cards = int("7")
-            Player_now_cards = int("7")
-            main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-        else:
-            lobby_test()
+        while len(Lobby) < 2:
+            if len(Lobby) == "2":
+                
+                Player1_deck = []
+                Player2_deck = []
+                print("Len bigger then")
+                for i in range(7):
+                    Player1_deck.append(choose_card())
+                for i in range(7):
+                    Player2_deck.append(choose_card())
+                PNC = int("7")
+                Player_now_UCard_Color = "x"
+                Player_now_UCard_Number = "x"
+                Player_last_UCard_Color = "x"
+                Player_last_UCard_Number = "x"
+                nw = ["start"]
+                choosed = []
+                Lobby_now = Lobby[1]
+                Player1_cards = int("7")
+                Player2_cards = int("7")
+                Player_now_cards = int("7")
+                main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
             def main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
                 def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
                     num = message.text
