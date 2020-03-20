@@ -77,7 +77,7 @@ def start_message(message):
 def send_text(message):
     if message.text.lower() == "lobby":
         user = message.chat.id
-        f = open ("players.txt", "a")
+        f = open ("players.txt", "rb+")
         f.write(str(user))
         count = 0
         with open("players.txt", "r") as f:
@@ -286,7 +286,7 @@ def send_text(message):
                     else:
                         print("")
                                     
-                main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
+            main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
             
 
 
