@@ -77,7 +77,7 @@ def start_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == "lobby":
-        Lobby.append(user)
+        Lobby.append(message.chat.id)
         print("Registered")
         while len(Lobby) < 2:
             print("Not len")
