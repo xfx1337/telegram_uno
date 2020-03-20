@@ -82,7 +82,6 @@ def send_text(message):
         if len(Lobby) >= 2:
             pass
         else:
-            message = "lobby"
             send_text(message)
         Player1_deck = []
         Player2_deck = []
