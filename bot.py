@@ -77,11 +77,10 @@ def start_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == "lobby":
+        Lobby.append(user)
         print("Registered")
         while len(Lobby) < 2:
             print("Not len")
-        if len(Lobby) == int("2"):
-            pass    
         Player1_deck = []
         Player2_deck = []
         print("Len bigger then")
