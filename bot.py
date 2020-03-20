@@ -77,12 +77,15 @@ def start_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == "lobby":
+        print("Registered")
         def lobby_test():
             user = message.chat.id
             lobby.append(user)
+            print("Lobby test")
         if len(lobby) > 1:
             Player1_deck = []
             Player2_deck = []
+            print("Len bigger then")
             for i in range(7):
                 Player1_deck.append(choose_card())
             for i in range(7):
