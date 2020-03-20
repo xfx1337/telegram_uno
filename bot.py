@@ -261,10 +261,10 @@ def send_text(message):
 
 
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
-                if message.text.lower == "lobby":
-                    return
-                else:
-                    pass
+                if (message.text.lower == "lobby") or (message.text == "Lobby"):
+                    ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                elif message.text.lower != "lobby":
+                    continue
                 if message.text == "take":
                     Player1_deck.append(choose_card())
                     Player1_cards = int(Player1_cards) + int("1")
