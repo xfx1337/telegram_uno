@@ -75,14 +75,14 @@ bot = telebot.TeleBot('964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk')
 def start_message(message):
     bot.send_message(message.chat.id, "Пиши Lobby для попадания в Lobby")
 @bot.message_handler(content_types=['text'])
-def send_text(message, Lobby):
+def send_text(message):
     if message.text.lower() == "lobby":
         Lobby.append(message.chat.id)
         print("Registered")
         if len(Lobby) >= 2:
             pass
         else:
-            send_text(message, Lobby)
+            send_text()
         Player1_deck = []
         Player2_deck = []
         print("Len bigger then")
