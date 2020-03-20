@@ -67,11 +67,13 @@ def choose_card():
     card_nw = random.choice(cards)
     return card_nw
 import os
-import telebot
-bot = telebot.TeleBot("1072085811:AAGg99N0EhLtRyhvBs-DbYBjdTT9DeQ0jEw")
+from telebot import *
+bot = telebot.TeleBot('964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk')
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id, "Пиши Lobby для попадания в Lobby")
+@bot.message_handler(content_types=['text'])
+def send_text(message):
     if message.text.lower() == "lobby":
         user = message.chat.id
         f = open ("players.txt", "w")
@@ -286,4 +288,4 @@ def start_message(message):
 
 
 
-bot.polling(none_stop=True)
+bot.polling()
