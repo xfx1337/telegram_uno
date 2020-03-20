@@ -78,7 +78,7 @@ def send_text(message):
     if message.text.lower() == "lobby":
         user = message.chat.id
         f = open ("players.txt", "w")
-        f.write(user)
+        f.write(str(user))
         count = len(f.readlines())
         while int(count) > int("1"):
             Player1_deck = []
