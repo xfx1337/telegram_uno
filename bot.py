@@ -79,6 +79,7 @@ def start_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == "lobby":
+        print("registered")
         Lobby.append(message.chat.id)
         print("Registered")
         if len(Lobby) >= 2:
@@ -130,5 +131,4 @@ def send_text(message):
                         bot.send_message(Lobby[-1], string)
                     num_sent = bot.send_message(Lobby[-1], "Выбери карту(цифруили если нет карты напиши take):")
                     bot.register_next_step_handler(num_sent, ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message))
-
- 
+            ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
