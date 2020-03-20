@@ -105,36 +105,35 @@ def send_text(message):
         def main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
                 num = message.text
-                if num == "take":
-                    Player1_deck.append(choose_card())
-                    Player1_cards = int(Player1_cards) + int("1")
-                    ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
-                else:
-                    try:
-                        
+                try:
+                    
+                    if num == "take":
+                        Player1_deck.append(choose_card())
+                        Player1_cards = int(Player1_cards) + int("1")
+                        ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                    else:
                         choosed = Player1_deck[int(num)]
                         bot.send_message(Lobby[-2], choosed)
                         Player_now_UCard_Color = choosed[-1]
                         Player_now_UCard_Number = choosed[-2]
                         classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
-                    except:
-                        pass
+                except:
+                    pass
             def ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
                 num = message.text
-                if num == "take":
-                    Player2_deck.append(choose_card())
-                    Player2_cards = int(Player2_cards) + int("1")
-                    ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
-                else:
-                    try:
-                        
+                try:
+                    if num == "take":
+                        Player2_deck.append(choose_card())
+                        Player2_cards = int(Player2_cards) + int("1")
+                        ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
+                    else:
                         choosed = Player2_deck[int(num)]
                         bot.send_message(Lobby[-1], choosed)
                         Player_now_UCard_Color = choosed[-1]
                         Player_now_UCard_Number = choosed[-2]
                         classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
-                    except:
-                        pass
+                except:
+                    classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
             def ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
                 if Lobby_now == Lobby[-2]:
                     for i in range(len(Player1_deck)):
