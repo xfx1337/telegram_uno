@@ -101,7 +101,7 @@ def send_text(message):
             Player2_cards = int("7")
             Player_now_cards = int("7")
             f = open("players.txt", "r")
-            Lobby_now = int(f.readline("1"))
+            Lobby_now = f.readline("1")
             for line in f:
                 bot.send_message(line, "Игрок 1 ходит:")
             main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
@@ -113,7 +113,7 @@ def send_text(message):
                             bot.send_message(line, "Карта Игрока:")
                             bot.send_message(line, choosed[-1])
                         if choosed[-1] == "+4":
-                            if int(Lobby_now) == int(f.readline("1")):
+                            if Lobby_now == f.readline("1"):
                                 Player1_cards = int(Player1_cards) - int("1")
                                 Player2_cards = int(Player2_cards) + int("4")
                             color_send = bot.send_message(f.readline("1"), "Выбери цвет(blue, red, green, yellow)")
@@ -125,7 +125,7 @@ def send_text(message):
                                 Player2_deck.append(choose_card())
                                 Player1_deck.remove(choosed)
                             ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-                            if int(Lobby_now) == int(f.readline("2")):
+                            if Lobby_now == f.readline("2"):
                                 Player2_cards = int(Player2_cards) - int("1")
                                 Player1_cards = int(Player1_cards) + int("4")
                             color_send = bot.send_message(f.readline("2"), "Выбери цвет(blue, red, green, yellow)")
@@ -138,12 +138,12 @@ def send_text(message):
                                 Player1_deck.remove(choosed)
                             ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                         if choosed[1] == "change":
-                            if int(Lobby_now) == int(f.readline("1")):
+                            if Lobby_now == f.readline("1"):
                                 Lobby_now = f.readline("2")
                                 Player1_cards = int(Player1_cards) - int("1")
                                 color_ask = bot.send_message(f.readline("1"))
                                 bot.register_next_step_handler(color_ask, change_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
-                            if int(Lobby_now) == int(f.readline("2")):
+                            if Lobby_now == f.readline("2"):
                                 Lobby_now = f.readline("1")
                                 Player2_cards = int(Player2_cards) - int("1")
                                 color_ask = bot.send_message(f.readline("1"))
@@ -163,27 +163,27 @@ def send_text(message):
                                         bot.send_message(line, "Игрок 1 ходит")
                                         ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                         if choosed[-2] == "pass":
-                            if int(Lobby_now) == int(f.readline("1")):
+                            if Lobby_now == f.readline("1"):
                                 Player1_cards = int(Player2_cards) - int("1")
                                 Player1_deck.remove(choosed)
                                 for line in f:
                                     bot.send_message(line, "Игрок 1 ходит")
                                 ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-                            if int(Lobby_now) == int(f.readline("2")):
+                            if Lobby_now == f.readline("2"):
                                 Player2_cards = int(Player2_cards) - int("1")
                                 Player2_deck.remove(choosed)
                                 for line in f:
                                     bot.send_message(line, "Игрок 2 ходит")
                                 ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                         if choosed[1] == "+2":
-                            if int(Lobby_now) == int("1"):
+                            if Lobby_now == int("1"):
                                 Player1_cards = int(Player1_cards) - int("1")
                                 Player2_cards = int(Player2_cards) + int("2")
                                 for i in range(2):
                                     Player2_deck.append(choose_card())
                                 Player1_deck.remove(choosed)
                                 ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-                            if int(Lobby_now) == int(f.readline("2")):
+                            if Lobby_now == f.readline("2"):
                                 Player2_cards = int(Player2_cards) - int("1")
                                 Player2_deck.remove(choosed)
                                 for line in f:
@@ -195,7 +195,7 @@ def send_text(message):
                                 bot.send_message(line, Player_now_UCard_Color)
                                 bot.send_message(line, "Номер карты игрока")
                                 bot.send_message(line, Player_now_UCard_Number)
-                            if int(Lobby_now) == int(f.readline("1")):
+                            if Lobby_now == f.readline("1"):
                                 PNC = int(PNC) - int("1")
                                 Player1_cards = PNC
                                 try:
@@ -204,7 +204,7 @@ def send_text(message):
                                         for line in f:
                                             bot.send_message("Игрок 1 выйграл!!!")
                                     PNC = int(Player2_cards)
-                                    Lobby_now = int(f.readline("2"))
+                                    Lobby_now = f.readline("2")
                                     Player_last_UCard_Number = "x"
                                     Player_last_UCard_Color = "x"
                                     Player_last_UCard_Number = Player_now_UCard_Number
@@ -214,7 +214,7 @@ def send_text(message):
                                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                                 except:
                                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-                            elif int(Lobby_now) == int(f.readline("2")):
+                            elif Lobby_now == f.readline("2"):
                                 PNC = int(PNC) - int("1")
                                 Player2_cards = PNC
                                 try:
@@ -223,7 +223,7 @@ def send_text(message):
                                         for line in f:
                                             bot.send_message(line, "Игрок 2 выйграл!!!")
                                         PNC = int(Player1_cards)
-                                        Lobby_now = int(f.readline("1"))
+                                        Lobby_now = f.readline("1")
                                         Player_last_UCard_Number = "x"
                                         Player_last_UCard_Color = "x"
                                         Player_last_UCard_Number = Player_now_UCard_Number
@@ -238,9 +238,9 @@ def send_text(message):
 
    
                 def classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                    if int(Lobby_now) == int(f.readline("1")):
+                    if Lobby_now == f.readline("1"):
                         PNC = len(Player1_deck)
-                    if int(Lobby_now) == int(f.readline("2")):
+                    if Lobby_now == f.readline("2"):
                         PNC = len(Player2_deck)
                     if (Player_now_UCard_Color == Player_last_UCard_Color) or (Player_now_UCard_Number == Player_last_UCard_Number):
                         classic_true(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
@@ -275,13 +275,13 @@ def send_text(message):
                         classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                 ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                 def ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                    if int(Lobby_now) == int(f.readline("1")):
+                    if Lobby_now == f.readline("1"):
                         for i in range(len(Player1_deck)):
                             string = str(i) + " " + str(Player1_deck[i])
                             bot.send_message(str(f.readline("1")), string)
                         num_sent = bot.send_message(str(f.readline("1")), "Выбери карту(цифруили если нет карты напиши take):")
                         bot.register_next_step_handler(num_sent, ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
-                    if int(Lobby_now) == int(f.readline("2")):
+                    if Lobby_now == f.readline("2"):
                         for i in range(len(Player2_deck)):
                             string = str(i) + " " + str(Player2_deck[i])
                             bot.send_message(str(f.readline("2")), string)
