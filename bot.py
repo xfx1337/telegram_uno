@@ -104,17 +104,14 @@ def send_text(message):
         Player_now_cards = int("7")
         def main(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message):
-                print("ask2_1")
-                print(message.text)
-                num = str(message.text)
                 try:
                     
-                    if num == "take":
+                    if message.text == "take":
                         Player1_deck.append(choose_card())
                         Player1_cards = int(Player1_cards) + int("1")
                         ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed, message)
                     else:
-                        choosed = Player1_deck[int(num)]
+                        choosed = Player1_deck[int(message.text)]
                         bot.send_message(Lobby[-2], choosed)
                         Player_now_UCard_Color = choosed[-1]
                         Player_now_UCard_Number = choosed[-2]
