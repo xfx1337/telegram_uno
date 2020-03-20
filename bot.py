@@ -80,6 +80,8 @@ def send_text(message):
         print("Registered")
         while len(Lobby) < 2:
             print("Not len")
+        if len(Lobby) == int("2"):
+            pass    
         Player1_deck = []
         Player2_deck = []
         print("Len bigger then")
