@@ -249,7 +249,7 @@ def send_text(message):
                     bot.register_next_step_handler(num_sent, ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
                 if Lobby_now == Lobby[-1]:
                     for card in range(len(Player2_deck)):
-                        string = str(i) + " " + str(Player2_deck[i])
+                        string = str(card) + " " + str(Player2_deck[i])
                         bot.send_message(Lobby[-1], string)
                     num_sent = bot.send_message(Lobby[-1], "Выбери карту(цифра или ake что бы взять карту из колоды):")
                     bot.register_next_step_handler(num_sent, ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
