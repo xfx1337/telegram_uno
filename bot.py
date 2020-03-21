@@ -73,17 +73,15 @@ bot = telebot.TeleBot("1072085811:AAGg99N0EhLtRyhvBs-DbYBjdTT9DeQ0jEw")
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id, "Пиши Lobby для попадания в Lobby")
-    Lobby_register()
-    def Lobby_register():
-        if message.text.lower() == "lobby":
-            Lobby.append(str(message.chat.id))
-            count = len(Lobby)
-            minPlayers = int("2")
-            while int(count) < minPlayers:
-                Lobby_register()
-                print("not enough")
-            print("enough")
-            print(Lobby)
+    if message.text.lower() == "lobby":
+        Lobby.append(str(message.chat.id))
+        count = len(Lobby)
+        minPlayers = int("2")
+        while int(count) < minPlayers:
+            Lobby_register()
+            print("not enough")
+        print("enough")
+        print(Lobby)
 bot.polling()
 
 
