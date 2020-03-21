@@ -70,7 +70,7 @@ import os
 import telebot
 from telebot import *
 Lobby = []
-bot = telebot.TeleBot("1072085811:AAGg99N0EhLtRyhvBs-DbYBjdTT9DeQ0jEw")
+bot = telebot.TeleBot("964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk")
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(message.chat.id, "Пиши Lobby для попадания в Lobby")
