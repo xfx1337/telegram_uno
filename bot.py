@@ -204,10 +204,11 @@ def send_text(message):
                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
   
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                while message.text is None:
-                    return
-                while message.text == "Lobby":
-                    return
+                while message.text == None:
+                    if message.text != None or message.text != "Lobby":
+                        pass
+                while message.text != "Lobby":
+                    pass
                 if message.text.lower == "take":
                     Player1_deck.append(choose_card())
                     Player1_cards = int(Player1_cards) + int("1")
@@ -220,10 +221,11 @@ def send_text(message):
                     print("else1_1")
                     classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
             def ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                while message.text is None:
-                    return
-                while message.text == "Lobby":
-                    return
+                while message.text == None:
+                    if message.text != None or message.text != "Lobby":
+                        pass
+                while message.text != "Lobby":
+                    pass
                 if message.text.lower == "take":
                     Player2_deck.append(choose_card())
                     Player2_cards = int(Player2_cards) + int("1")
