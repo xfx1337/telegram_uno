@@ -82,7 +82,6 @@ def send_text(message):
         count = len(Lobby)
         minPlayers = int("2")
         while int(count) < minPlayers:
-            Lobby_register()
             print("not enough")
         print("enough")
         print(Lobby)
