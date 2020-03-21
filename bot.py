@@ -110,7 +110,7 @@ def send_text(message):
                         if Lobby_now == Lobby[1]:
                             Player1_cards = int(Player1_cards) - int("1")
                             Player2_cards = int(Player2_cards) + int("4")
-                            color_send = bot.send_message(Lobby[1], "Выбери цвет(blue, red, yellow, blue):"])
+                            color_send = bot.send_message(Lobby[1], "Выбери цвет(blue, red, yellow, blue):")
                             bot.register_next_step_handler(color_send, pluse4_1_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
                             def pluse_1_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
                                 while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
@@ -129,7 +129,7 @@ def send_text(message):
                         if Lobby_now == Lobby[2]:
                             Player2_cards = int(Player2_cards) - int("1")
                             Player1_cards = int(Player1_cards) + int("4")
-                            color_send = bot.send_message(Lobby[2], "Выбери цвет(blue, red, yellow, blue):"])
+                            color_send = bot.send_message(Lobby[2], "Выбери цвет(blue, red, yellow, blue):")
                             bot.register_next_step_handler(color_send, pluse4_2_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
                             def pluse_2_color(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
                                 while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
