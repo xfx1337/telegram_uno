@@ -70,6 +70,7 @@ import os
 import telebot
 from telebot import *
 Lobby = ([])
+minPlayers = int("2")
 bot = telebot.TeleBot("964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk")
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -78,12 +79,10 @@ def start_message(message):
 def send_text(message):
     if message.text.lower() == "lobby":
         print("registered")
-        Lobby.append(str(message.chat.id)
-        int(count) = len(Lobby)
+        Lobby.append(str(message.chat.id))
         minPlayers = int("2")
-        while int(count) < minPlayers:
+        while int(len(Lobby)) < minPlayers:
             print("not enough")
-            count == len(Lobby)
             return
         uno_start()
         def uno_start():
