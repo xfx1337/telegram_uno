@@ -79,11 +79,12 @@ def send_text(message):
     if message.text.lower() == "lobby":
         print("registered")
         Lobby.append(str(message.chat.id)
-        count = len(Lobby)
+        count == int("0")
+        count == len(Lobby)
         minPlayers = int("2")
         while int(count) < minPlayers:
             print("not enough")
-            count = len(Lobby)
+            count == len(Lobby)
             return
         uno_start()
         def uno_start():
