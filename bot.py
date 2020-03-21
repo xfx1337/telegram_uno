@@ -421,7 +421,7 @@ def send_text(message):
                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
   
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                while message.text.lower() == "lobby":
+                while (message.text.lower() == "lobby") or (message.text == "Lobby"):
                     return
                 if message.text.lower == "take":
                     Player1_deck.append(choose_card())
@@ -433,8 +433,8 @@ def send_text(message):
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
                     classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-            def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                while message.text.lower() == "lobby":
+            def ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
+                while (message.text.lower() == "lobby") or (message.text == "Lobby"):
                     return
                 if message.text.lower == "take":
                     Player2_deck.append(choose_card())
