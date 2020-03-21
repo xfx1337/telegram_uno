@@ -83,9 +83,8 @@ def send_text(message):
         minPlayers = int("2")
         while int(count) < minPlayers:
             print("not enough")
-        while int(count) >= minPlayers:
-            print("enough")
-        print(Lobby)
+            count = len(Lobby)
+        print("enough")
 bot.polling()
 
 
