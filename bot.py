@@ -205,7 +205,6 @@ def send_text(message):
   
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
                 while (message.text.lower() == "lobby") or (message.text is None):
-                    print("None")
                     ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                 if message.text.lower == "take":
                     Player1_deck.append(choose_card())
