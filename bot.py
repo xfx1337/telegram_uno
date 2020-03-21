@@ -69,7 +69,7 @@ def choose_card():
 import os
 import telebot
 from telebot import *
-Lobby = []
+Lobby = ([])
 bot = telebot.TeleBot("964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk")
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -79,8 +79,7 @@ def send_text(message):
     if message.text.lower() == "lobby":
         print("registered")
         Lobby.append(str(message.chat.id)
-        count == int("0")
-        count == len(Lobby)
+        int(count) = len(Lobby)
         minPlayers = int("2")
         while int(count) < minPlayers:
             print("not enough")
