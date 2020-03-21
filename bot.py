@@ -205,29 +205,35 @@ def send_text(message):
   
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
                 while (message.text.lower() == "lobby") or (message.text is None):
+                    print("None")
                     return
                 if message.text.lower == "take":
                     Player1_deck.append(choose_card())
                     Player1_cards = int(Player1_cards) + int("1")
                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                 else:
+                    print("else1")
                     choosed == Player1_deck[int(message.text)]
                     bot.send_message(Lobby[-2], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
+                    print("else1_1")
                     classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
             def ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                while message.text.lower() == "lobby":
+                while message.text.lower() == "lobby" or message.text is None:
+                    print("None2")
                     return
                 if message.text.lower == "take":
                     Player2_deck.append(choose_card())
                     Player2_cards = int(Player2_cards) + int("1")
                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                 else:
+                    print("else2")
                     choosed == Player2_deck[int(message.text)]
                     bot.send_message(Lobby[-1], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
+                    print("else2_2")
                     classic(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                     
 
