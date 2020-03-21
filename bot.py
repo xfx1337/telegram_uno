@@ -146,9 +146,9 @@ def send_text(message):
                                     bot.send_message(user, Player_last_UCard_Color)
                                 ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                     if choosed[-1] == "change":
-                        if Lobby_now = Lobby[1]:
+                        if int(Lobby_now) == int(Lobby[1]):
                             
-                            Lobby_now = Lobby[2]
+                            Lobby_now == Lobby[2]
                             Player1_cards = int(Player1_cards) - int("1")
                             color_ask = bot.send_message(Lobby[1], "Выбери цвет(red, blue, green, yellow):")
                             bot.register_next_step_handler(color_ask, change_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
@@ -164,9 +164,9 @@ def send_text(message):
                                     bot.send_message(user, "Сменил цвет на: ")
                                     bot.send_message(user, Player_last_UCard_Color)
                                 ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-                        if Lobby_now = Lobby[2]:
+                        if Lobby_now == Lobby[2]:
                             
-                            Lobby_now = Lobby[1]
+                            Lobby_now == Lobby[1]
                             Player2_cards = int(Player2_cards) - int("1")
                             color_ask = bot.send_message(Lobby[2], "Выбери цвет(red, blue, green, yellow):")
                             bot.register_next_step_handler(color_ask, change_2(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed))
@@ -182,7 +182,7 @@ def send_text(message):
                                     bot.send_message(user, "Сменил цвет на: ")
                                     bot.send_message(user, Player_last_UCard_Color)
                                 ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
-                    if choosed[1] = ="+2":
+                    if choosed[1] == "+2":
                         if Lobby_now = Lobby[1]:
                             Player1_cards = int(Player1_cards) - int("1")
                             Player2_cards = int(Player2_cards) + int("2")
