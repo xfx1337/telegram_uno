@@ -265,6 +265,19 @@ def send_text(message):
             Player_last_UCard_Number = "x"
             nw = ["start"]
             choosed = []
+            Player1_deck = []
+            Player2_deck = []
+            for i in range(7):
+                Player1_deck.append(choose_card())
+            for i in range(7):
+                Player2_deck.append(choose_card())
+            PNC = int("7")
+            Player_now_UCard_Color = "x"
+            Player_now_UCard_Number = "x"
+            Player_last_UCard_Color = "x"
+            Player_last_UCard_Number = "x"
+            nw = ["start"]
+            choosed = []
             Player1_cards = int("7")
             Player2_cards = int("7")
             Player_now_cards = int("7")
