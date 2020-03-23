@@ -204,10 +204,10 @@ def send_text(message):
                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
   
             def ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed):
-                update.message.text
-                print(update.message.text)
-
-
+                mes = message.text
+                if not mes.isdigit() or message.text.lower() != "take":
+                    msg = "Попробуй снова!:"
+                    bot.register_next_step_handler(msg, ask2_1)
                 
                 if message.text.lower == "take":
                     Player1_deck.append(choose_card())
