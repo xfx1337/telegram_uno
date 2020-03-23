@@ -207,6 +207,10 @@ def send_text(message):
 
                 while True:
                     try:
+                        if message.text == None:
+                            return
+                        if message.text == "Lobby":
+                            return
                         answer = int(message.text)
                         if type(answer) is int:
                             pass
