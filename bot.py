@@ -214,7 +214,7 @@ def send_text(message):
                     Player1_cards = int(Player1_cards) + int("1")
                     ask(Player_now_UCard_Color, Player_now_UCard_Number, Player1_cards, Player2_cards, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player_now_cards, PNC, Player1_deck, Player2_deck, nw, choosed)
                 mes = message.text
-                elif mes.isdigit():
+                if mes.isdigit():
                     choosed == Player1_deck[int(message.text)]
                     bot.send_message(Lobby[-2], choosed)
                     Player_now_UCard_Color = choosed[-1]
