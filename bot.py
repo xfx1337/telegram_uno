@@ -67,8 +67,8 @@ def choose_card():
     card_nw = random.choice(cards)
     return card_nw
 import os
-global Lobby = []
-global Lobby_Status = "Empty"
+Lobby = []
+Lobby_Status = "Empty"
 import telebot
 from telebot import *
 bot = telebot.TeleBot('964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk')
@@ -87,9 +87,9 @@ def FindLobby(message):
     global Player2_deck = []
     print("Len bigger then")
     for i in range(7):
-        Player1_deck.append(choose_card())
+        global Player1_deck.append(choose_card())
     for i in range(7):
-        Player2_deck.append(choose_card())
+        global Player2_deck.append(choose_card())
     global PNC = int("7")
     global Player_now_UCard_Color = "x"
     global Player_now_UCard_Number = "x"
