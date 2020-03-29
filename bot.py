@@ -102,7 +102,6 @@ def FindLobby(message):
         Player1_deck.append(choose_card())
     for i in range(7):
         Player2_deck.append(choose_card())
-    def checker(Lobby_Status, Lobby_now, Lobby, Player1_deck)
 @bot.message_handler(commands=['ChooseCard'])
 def ChooseCard(message):
     
