@@ -67,6 +67,8 @@ def choose_card():
     card_nw = random.choice(cards)
     return card_nw
 import os
+Player1_deck = []
+Player2_deck = []
 Lobby = []
 Lobby_Status = "Empty"
 import telebot
