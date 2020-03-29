@@ -71,6 +71,16 @@ Player1_deck = []
 Player2_deck = []
 Lobby = []
 Lobby_Status = "Empty"
+PNC = int("7")
+Player_now_UCard_Color = "x"
+Player_now_UCard_Number = "x"
+Player_last_UCard_Color = "x"
+Player_last_UCard_Number = "x"
+choosed = []
+Lobby_now = Lobby[-2]
+Player1_cards = int("7")
+Player2_cards = int("7")
+Player_now_cards = int("7")
 import telebot
 from telebot import *
 bot = telebot.TeleBot('964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk')
@@ -85,23 +95,13 @@ def FindLobby(message):
         pass
     else:
         return
-    global Player1_deck = []
-    global Player2_deck = []
+    global Player1_deck
+    global Player2_deck
     print("Len bigger then")
     for i in range(7):
-        global Player1_deck.append(choose_card())
+        Player1_deck.append(choose_card())
     for i in range(7):
-        global Player2_deck.append(choose_card())
-    global PNC = int("7")
-    global Player_now_UCard_Color = "x"
-    global Player_now_UCard_Number = "x"
-    global Player_last_UCard_Color = "x"
-    global Player_last_UCard_Number = "x"
-    global choosed = []
-    global Lobby_now = Lobby[-2]
-    global Player1_cards = int("7")
-    global Player2_cards = int("7")
-    global Player_now_cards = int("7")
+        Player2_deck.append(choose_card())
     def checker(Lobby_Status, Lobby_now, Lobby, Player1_deck)
 @bot.message_handler(commands=['ChooseCard'])
 def ChooseCard(message):
@@ -131,7 +131,6 @@ def ChooseCard(message):
         for i in range(len(Player1_deck)):
             string = str(i) + " " + str(Player1_deck[i])
             bot.send_message(Lobby[-2], string)
-        global User_Playing_Status == "Wait"
         bot.send_message(message.chat.id, "Напиши номер карты или take(take длч того что бы взять карту из колоды:")
         @bot.message_handler(content_types=['text'])
         def handler(message):
@@ -145,65 +144,64 @@ def ChooseCard(message):
             global Player1_cards
             global Player2_cards
             global Player_now_cards
-            if User_Playing_Status == "Wait":
-                global mess = message.text
-                bot.send_message(message.chat.id, "Вы сходили. Проверка подходит ли ваша карта к прошлой")
-                num = message.text
-                if num == "take":
-                    global Player1_deck.append(choose_card())
-                    global Player1_cards = int(Player1_cards) + int("1")
+            global mess = message.text
+            bot.send_message(message.chat.id, "Вы сходили. Проверка подходит ли ваша карта к прошлой")
+            num = message.text
+            if num == "take":
+                global Player1_deck.append(choose_card())
+                global Player1_cards = int(Player1_cards) + int("1")
+            else:
+                global choosed = Player1_deck[int(num)]
+                bot.send_message(str(f.readline("1")), choosed)
+                global Player_now_UCard_Color = choosed[-1]
+                global Player_now_UCard_Number = choosed[-2]
+                if Player_now_UCard_Color == Player_last_UCard_Color or Player_now_UCard_Number == Player_last_UCard_Number or Player_last_UCard_Color == "x" or Player_last_UCard_Number == "x" or Player_now_UCard_Number == "change" or (Player_now_UCard_Number == "+4"):
+                    pass
                 else:
-                    global choosed = Player1_deck[int(num)]
-                    bot.send_message(str(f.readline("1")), choosed)
-                    global Player_now_UCard_Color = choosed[-1]
-                    global Player_now_UCard_Number = choosed[-2]
-                    if Player_now_UCard_Color == Player_last_UCard_Color or Player_now_UCard_Number == Player_last_UCard_Number or Player_last_UCard_Color == "x" or Player_last_UCard_Number == "x" or Player_now_UCard_Number == "change" or (Player_now_UCard_Number == "+4"):
-                        pass
-                    else:
-                        return
-                    bot.send_message(message.chat.id, "Карта подходит!")
-                    global Player_last_UCard_Color == Player_now_UCard_Color
-                    global Player_last_UCard_Number == Player_now_UCard_Number
-                    if Player_now_UCard_Number == "change":
-                        Lobby_now == Lobby[-1]
-                        global Player1_cards = int(Player1_cards) - int("1")
-                        bot.send_message(Lobby[-2], "Цвет для следуешего игрока:")
-                        @bot.message_handler(content_types=['text'])
-                        def handler(message):
-                            global PNC
-                            global Player_now_UCard_Color
-                            global Player_now_UCard_Number
-                            global Player_last_UCard_Color
-                            global Player_last_UCard_Number
-                            global choosed
-                            global Lobby_now
-                            global Player1_cards
-                            global Player2_cards
-                            global Player_now_cards
-                            color = message.text
-                            global Player_last_UCard_Color = color
-                            global Player1_deck.remove(choosed)
-                    if Player_now_UCard_Number == "+4":
-                        global Player1_cards = int(Player1_cards) - int("1")
-                        global Player2_cards = int(Player2_cards) + int("4")
-                        bot.send_message(Lobby[-2], "Выбери цвет для следуешего игрока:")
-                        @bot.message_handler(content_types=['text'])
-                        def handler(message):
-                            global PNC
-                            global Player_now_UCard_Color
-                            global Player_now_UCard_Number
-                            global Player_last_UCard_Color
-                            global Player_last_UCard_Number
-                            global choosed
-                            global Lobby_now
-                            global Player1_cards
-                            global Player2_cards
-                            global Player_now_cards
-                            color = message.text
-                            global Player_last_UCard_Color = color
-                            global Player1_deck.remove(choosed)
-                            for i in range(4):
-                                global Player2_deck.append(choose_card())
+                    return
+                bot.send_message(message.chat.id, "Карта подходит!")
+                Player_last_UCard_Color == Player_now_UCard_Color
+                Player_last_UCard_Number == Player_now_UCard_Number
+                if Player_now_UCard_Number == "change":
+                    Lobby_now == Lobby[-1]
+                    Player1_cards = int(Player1_cards) - int("1")
+                    bot.send_message(Lobby[-2], "Цвет для следуешего игрока:")
+                    @bot.message_handler(content_types=['text'])
+                    def handler(message):
+                        global PNC
+                        global Player_now_UCard_Color
+                        global Player_now_UCard_Number
+                        global Player_last_UCard_Color
+                        global Player_last_UCard_Number
+                        global choosed
+                        global Lobby_now
+                        global Player1_cards
+                        global Player2_cards
+                        global Player_now_cards
+                        color = message.text
+                        Player_last_UCard_Color = color
+                        Player1_deck.remove(choosed)
+                if Player_now_UCard_Number == "+4":
+                    Player1_cards = int(Player1_cards) - int("1")
+                    Player2_cards = int(Player2_cards) + int("4")
+                    bot.send_message(Lobby[-2], "Выбери цвет для следуешего игрока:")
+                    @bot.message_handler(content_types=['text'])
+                    def handler(message):
+                        global PNC
+                        global Player_now_UCard_Color
+                        global Player_now_UCard_Number
+                        global Player_last_UCard_Color
+                        global Player_last_UCard_Number
+                        global choosed
+                        global Lobby_now
+                        global Player1_cards
+                        global Player2_cards
+                        global Player_now_cards
+                        color = message.text
+                        global Player_last_UCard_Color = color
+                        global Player1_deck.remove(choosed)
+                        for i in range(4):
+                            global Player2_deck.append(choose_card())
                     
                 
 
