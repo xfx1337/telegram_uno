@@ -196,8 +196,8 @@ def ChooseCard(message):
                         global Player2_cards
                         global Player_now_cards
                         color = message.text
-                        global Player_last_UCard_Color = color
-                        global Player1_deck.remove(choosed)
+                        Player_last_UCard_Color = color
+                        Player1_deck.remove(choosed)
                         for i in range(4):
                             global Player2_deck.append(choose_card())
                     
