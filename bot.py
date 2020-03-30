@@ -199,7 +199,7 @@ def ChooseCard(message):
                         Player_last_UCard_Color = color
                         Player1_deck.remove(choosed)
                         for i in range(4):
-                            global Player2_deck.append(choose_card())
+                            Player2_deck.append(choose_card())
                     
                 
 
