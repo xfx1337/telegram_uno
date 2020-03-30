@@ -77,7 +77,7 @@ Player_now_UCard_Number = "x"
 Player_last_UCard_Color = "x"
 Player_last_UCard_Number = "x"
 choosed = []
-Lobby_now = Lobby[-2]
+
 Player1_cards = int("7")
 Player2_cards = int("7")
 Player_now_cards = int("7")
@@ -102,6 +102,7 @@ def FindLobby(message):
         Player1_deck.append(choose_card())
     for i in range(7):
         Player2_deck.append(choose_card())
+    Lobby_now = Lobby[-2]
 @bot.message_handler(commands=['ChooseCard'])
 def ChooseCard(message):
     
