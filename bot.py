@@ -77,7 +77,7 @@ Player_now_UCard_Number = "x"
 Player_last_UCard_Color = "x"
 Player_last_UCard_Number = "x"
 choosed = []
-
+Lobby_now = ""
 Player1_cards = int("7")
 Player2_cards = int("7")
 Player_now_cards = int("7")
@@ -89,12 +89,24 @@ def start_message(message):
     bot.send_message(message.chat.id, "Пиши Lobby для попадания в Lobby")
 @bot.message_handler(commands=['FindLobby'])
 def FindLobby(message):
+    global PNC
+    global Player_now_UCard_Color
+    global Player_now_UCard_Number
+    global Player_last_UCard_Color
+    global Player_last_UCard_Number
+    global choosed
+    global Lobby_now
+    global Player1_cards
+    global Player2_cards
+    global Player_now_cards
+    
     Lobby.append(message.chat.id)
     print("Registered")
     if len(Lobby) >= 2:
         pass
     else:
         return
+    Lobby_now = Lobby[-2]
     global Player1_deck
     global Player2_deck
     print("Len bigger then")
@@ -102,11 +114,11 @@ def FindLobby(message):
         Player1_deck.append(choose_card())
     for i in range(7):
         Player2_deck.append(choose_card())
-    Lobby_now = Lobby[-2]
 @bot.message_handler(commands=['ChooseCard'])
 def ChooseCard(message):
     
-    
+    global Player1_deck
+    global Player2_deck
     global PNC
     global Player_now_UCard_Color
     global Player_now_UCard_Number
@@ -134,6 +146,8 @@ def ChooseCard(message):
         bot.send_message(message.chat.id, "Напиши номер карты или take(take длч того что бы взять карту из колоды:")
         @bot.message_handler(content_types=['text'])
         def handler(message):
+            global Player1_deck
+            global Player2_deck
             global PNC
             global Player_now_UCard_Color
             global Player_now_UCard_Number
@@ -167,6 +181,8 @@ def ChooseCard(message):
                     bot.send_message(Lobby[-2], "Цвет для следуешего игрока:")
                     @bot.message_handler(content_types=['text'])
                     def handler(message):
+                        global Player1_deck
+                        global Player2_deck
                         global PNC
                         global Player_now_UCard_Color
                         global Player_now_UCard_Number
@@ -186,6 +202,8 @@ def ChooseCard(message):
                     bot.send_message(Lobby[-2], "Выбери цвет для следуешего игрока:")
                     @bot.message_handler(content_types=['text'])
                     def handler(message):
+                        global Player1_deck
+                        global Player2_deck
                         global PNC
                         global Player_now_UCard_Color
                         global Player_now_UCard_Number
