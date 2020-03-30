@@ -143,7 +143,6 @@ def ChooseCard(message):
             global Player1_cards
             global Player2_cards
             global Player_now_cards
-            global mess = message.text
             bot.send_message(message.chat.id, "Вы сходили. Проверка подходит ли ваша карта к прошлой")
             num = message.text
             if num == "take":
@@ -151,7 +150,7 @@ def ChooseCard(message):
                 global Player1_cards = int(Player1_cards) + int("1")
             else:
                 global choosed = Player1_deck[int(num)]
-                bot.send_message(str(f.readline("1")), choosed)
+                bot.send_message(Lobby[-2]), choosed)
                 global Player_now_UCard_Color = choosed[-1]
                 global Player_now_UCard_Number = choosed[-2]
                 if Player_now_UCard_Color == Player_last_UCard_Color or Player_now_UCard_Number == Player_last_UCard_Number or Player_last_UCard_Color == "x" or Player_last_UCard_Number == "x" or Player_now_UCard_Number == "change" or (Player_now_UCard_Number == "+4"):
