@@ -280,7 +280,7 @@ def send_text(message):
             Lobby_now = Lobby[-2]
             for user in Lobby:
                 bot.send_message(user, "Игрок 1 ходит")
-            main(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNCd)
+            main(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC)
     if message.text.lower() == "lobby":
         print("registered")
         Lobby.append(str(message.chat.id))
@@ -288,6 +288,6 @@ def send_text(message):
         while int(len(Lobby)) < minPlayers:
             print("not enough")
             return
-        uno_start()
-
+        while len(Lobby) == int("2"):
+            uno_start()
 bot.polling()
