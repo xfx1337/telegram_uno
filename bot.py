@@ -204,31 +204,20 @@ def send_text(message):
                     ask(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC)
   
             def ask2_1(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC):
-                if type(mes) = str:
-                    ask(, message)
-                mes = message.text
-                if not mes.isdigit() or message.text.lower() != "take" or message.text is None:
-                    msg = bot.send_message(Lobby[-2], "Попробуй снова!:")
-                    mes = message.text
-                    bot.register_next_step_handler(msg, ask(, message))
-                    return
                 if message.text.lower == "take":
-                    Player1_deck.append(choose_card())
-                    Player1_cards = int(Player1_cards) + int("1")
-                    ask()
-                mes = message.text
-                if mes.isdigit():
-                    choosed == Player1_deck[int(message.text)]
-                    bot.send_message(Lobby[-2], choosed)
+                    Player2_deck.append(choose_card())
+                    Player2_cards = int(Player2_cards) + int("1")
+                    ask(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC)
+                else:
+                    print("else2")
+                    choosed == Player2_deck[int(message.text)]
+                    bot.send_message(Lobby[-1], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
-                    classic()
+                    print("else2_2")
+                    classic(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC)
+                    
             def ask2_2(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC):
-                while message.text == None:
-                    if message.text != None or message.text != "Lobby":
-                        pass
-                while message.text != "Lobby":
-                    pass
                 if message.text.lower == "take":
                     Player2_deck.append(choose_card())
                     Player2_cards = int(Player2_cards) + int("1")
