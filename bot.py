@@ -245,7 +245,7 @@ def send_text(message):
                         bot.send_message(Lobby[-2], string)
                     num_sent = bot.send_message(Lobby[-2], "Выбери карту(цифра или пропиши take что взять карту из колоды):")
                     choosed = []
-                    PNC = ""
+                    PNC == int("7")
                     bot.register_next_step_handler(num_sent, ask2_1(Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC))
                 if Lobby_now == Lobby[-1]:
                     for card in range(len(Player2_deck)):
