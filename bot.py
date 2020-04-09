@@ -253,12 +253,6 @@ def send_text(message):
                     num_sent = bot.send_message(Lobby[-1], "Выбери карту(цифра или ake что бы взять карту из колоды):")
                     choosed = []
                     bot.register_next_step_handler(num_sent, ask2_2(Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC
-                    
-
-
-
-        choosed = []
-        PNC = int("7")
         ask(message, Player_now_UCard_Color, Player_now_UCard_Number, Player_last_UCard_Number, Player_last_UCard_Color, Lobby_now, Player1_deck, Player2_deck, choosed, PNC)
     def uno_start():
             message = ""
