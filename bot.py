@@ -1,4 +1,15 @@
 import random
+global Player_now_UCard_Color
+global Player_now_UCard_Number
+global Player_last_UCard_Color
+global Player_last_UCard_Number
+global Lobby_now
+global Player1_deck
+global Player2_deck
+global choosed
+global PNC
+global Lobby
+global Lobby_now
 def choose_card():
     card1 = ["reverse", "red"]
     card2 = ["reverse", "green"]
@@ -78,6 +89,17 @@ def start_message(message):
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     def main():
+            global Player_now_UCard_Color
+            global Player_now_UCard_Number
+            global Player_last_UCard_Color
+            global Player_last_UCard_Number
+            global Lobby_now
+            global Player1_deck
+            global Player2_deck
+            global choosed
+            global PNC
+            global Lobby
+            global Lobby_now
             def classic_true():
                 global Player_now_UCard_Color
                 global Player_now_UCard_Number
@@ -88,6 +110,8 @@ def send_text(message):
                 global Player2_deck
                 global choosed
                 global PNC
+                global Lobby
+                global Lobby_now
                 if (Player_now_UCard_Number == "+4") or (Player_now_UCard_Number == "change") or (Player_now_UCard_Number == "+2") or (Player_now_UCard_Number == "pass") or (Player_now_UCard_Number == "reverse"):
                     for user in Lobby:
                         bot.send_message(user, "Карта ходящего игрока:")
@@ -99,6 +123,17 @@ def send_text(message):
                             color_send = bot.send_message(Lobby[-2], "Выбери цвет(blue, red, yellow, blue):")
                             bot.register_next_step_handler(color_send, pluse4_1_color())
                             def pluse_1_color():
+                                global Player_now_UCard_Color
+                                global Player_now_UCard_Number
+                                global Player_last_UCard_Color
+                                global Player_last_UCard_Number
+                                global Lobby_now
+                                global Player1_deck
+                                global Player2_deck
+                                global choosed
+                                global PNC
+                                global Lobby
+                                global Lobby_now
                                 while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
                                     return
                                 color = message.text.lower
@@ -118,6 +153,17 @@ def send_text(message):
                             color_send = bot.send_message(Lobby[-1], "Выбери цвет(blue, red, yellow, blue):")
                             bot.register_next_step_handler(color_send, pluse4_2_color())
                             def pluse_2_color():
+                                global Player_now_UCard_Color
+                                global Player_now_UCard_Number
+                                global Player_last_UCard_Color
+                                global Player_last_UCard_Number
+                                global Lobby_now
+                                global Player1_deck
+                                global Player2_deck
+                                global choosed
+                                global PNC
+                                global Lobby
+                                global Lobby_now
                                 while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
                                     return
                                 color = message.text.lower
@@ -139,6 +185,17 @@ def send_text(message):
                             color_ask = bot.send_message(Lobby[-2], "Выбери цвет(red, blue, green, yellow):")
                             bot.register_next_step_handler(color_ask, change_1())
                             def change_1():
+                                global Player_now_UCard_Color
+                                global Player_now_UCard_Number
+                                global Player_last_UCard_Color
+                                global Player_last_UCard_Number
+                                global Lobby_now
+                                global Player1_deck
+                                global Player2_deck
+                                global choosed
+                                global PNC
+                                global Lobby
+                                global Lobby_now
                                 while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
                                     return
                                 color = message.text.lower
@@ -157,6 +214,17 @@ def send_text(message):
                             color_ask = bot.send_message(Lobby[-1], "Выбери цвет(red, blue, green, yellow):")
                             bot.register_next_step_handler(color_ask, change_2())
                             def change_2():
+                                global Player_now_UCard_Color
+                                global Player_now_UCard_Number
+                                global Player_last_UCard_Color
+                                global Player_last_UCard_Number
+                                global Lobby_now
+                                global Player1_deck
+                                global Player2_deck
+                                global choosed
+                                global PNC
+                                global Lobby
+                                global Lobby_now
                                 while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
                                     return
                                 color = message.text.lower
@@ -210,6 +278,8 @@ def send_text(message):
                 global Player2_deck
                 global choosed
                 global PNC
+                global Lobby
+                global Lobby_now
                 if Lobby_now == Lobby[-2]:
                     PNC = len(Player1_deck)
                 if Lobby_now == Lobby[-1]:
@@ -231,6 +301,8 @@ def send_text(message):
                 global Player2_deck
                 global choosed
                 global PNC
+                global Lobby
+                global Lobby_now
                 if message.text.lower == "take":
                     Player2_deck.append(choose_card())
                     Player2_cards = int(Player2_cards) + int("1")
@@ -254,6 +326,8 @@ def send_text(message):
                 global Player2_deck
                 global choosed
                 global PNC
+                global Lobby
+                global Lobby_now
                 if message.text.lower == "take":
                     Player2_deck.append(choose_card())
                     Player2_cards = int(Player2_cards) + int("1")
@@ -284,6 +358,8 @@ def send_text(message):
                 global Player2_deck
                 global choosed
                 global PNC
+                global Lobby
+                global Lobby_now
                 if Lobby_now == Lobby[-2]:
                     for card in range(len(Player1_deck)):
                         string = str(card) + " " + str(Player1_deck[card])
@@ -299,26 +375,29 @@ def send_text(message):
                     bot.register_next_step_handler(num_sent, ask2_2)
             ask()
     def uno_start():
-            global Player_now_UCard_Color = "x"
-            global Player_now_UCard_Number = "x"
-            global Player_last_UCard_Color = "x"
-            global Player_last_UCard_Number = "x"
-            global choosed = []
-            global Player1_deck = []
-            global Player2_deck = []
-            global PNC = int("7")
+            global Player_now_UCard_Color
+            global Player_now_UCard_Number
+            global Player_last_UCard_Color
+            global Player_last_UCard_Number
+            global Lobby_now
+            global Player1_deck
+            global Player2_deck
+            global choosed
+            global PNC
+            global Lobby
+            global Lobby_now
+            Player_now_UCard_Color = "x"
+            Player_now_UCard_Number = "x"
+            Player_last_UCard_Color = "x"
+            Player_last_UCard_Number = "x"
+            choosed = []
+            Player1_deck = []
+            Player2_deck = []
+            PNC = int("7")
             for i in range(7):
                 Player1_deck.append(choose_card())
             for i in range(7):
                 Player2_deck.append(choose_card())
-            global PNC = int("7")
-            global Player_now_UCard_Color = "x"
-            global Player_now_UCard_Number = "x"
-            global Player_last_UCard_Color = "x"
-            global Player_last_UCard_Number = "x"
-            global choosed = []
-            global Lobby_now
-            global Lobby
             Lobby_now = Lobby[-2]
             for user in Lobby:
                 bot.send_message(user, "Игрок 1 ходит")
