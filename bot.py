@@ -304,15 +304,12 @@ def send_text(message):
                 global Lobby
                 global Lobby_now
                 if message.text.lower == "take":
-                    Player2_deck.append(choose_card())
-                    Player2_cards = int(Player2_cards) + int("1")
+                    Player1_deck.append(choose_card())
                     ask()
-                mess = message.text
                 else:
                     print("else2")
                     print(message.text)
                     choosed == Player1_deck[int(message.text)]
-                    print choosed
                     bot.send_message(Lobby[-2], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
@@ -332,13 +329,11 @@ def send_text(message):
                 global Lobby_now
                 if message.text.lower == "take":
                     Player2_deck.append(choose_card())
-                    Player2_cards = int(Player2_cards) + int("1")
                     ask()
                 else:
                     print("else2")
                     print(message.text)
                     choosed == Player2_deck[int(message.text)]
-                    print choosed
                     bot.send_message(Lobby[-1], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
