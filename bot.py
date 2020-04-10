@@ -368,7 +368,7 @@ def send_text(message):
                     bot.register_next_step_handler(num_sent, ask2_1)
                 if Lobby_now == Lobby[-1]:
                     for card in range(len(Player2_deck)):
-                        string = str(card) + " " + str(Player2_deck[i])
+                        string = str(card) + " " + str(Player2_deck[card])
                         bot.send_message(Lobby[-1], string)
                     num_sent = bot.send_message(Lobby[-1], "Выбери карту(цифра или ake что бы взять карту из колоды):")
                     choosed = []
