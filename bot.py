@@ -308,8 +308,9 @@ def send_text(message):
                     Player2_cards = int(Player2_cards) + int("1")
                     ask()
                 mess = message.text
-                elif mess.isdigit():
+                else:
                     print("else2")
+                    print(message.text)
                     choosed == Player1_deck[int(message.text)]
                     print choosed
                     bot.send_message(Lobby[-2], choosed)
@@ -335,6 +336,7 @@ def send_text(message):
                     ask()
                 else:
                     print("else2")
+                    print(message.text)
                     choosed == Player2_deck[int(message.text)]
                     print choosed
                     bot.send_message(Lobby[-1], choosed)
