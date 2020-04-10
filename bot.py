@@ -307,11 +307,12 @@ def send_text(message):
                     Player2_deck.append(choose_card())
                     Player2_cards = int(Player2_cards) + int("1")
                     ask()
-                else:
+                mess = message.text
+                elif mess.isdigit():
                     print("else2")
-                    choosed == Player2_deck[int(message.text)]
+                    choosed == Player1_deck[int(message.text)]
                     print choosed
-                    bot.send_message(Lobby[-1], choosed)
+                    bot.send_message(Lobby[-2], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
                     classic()
