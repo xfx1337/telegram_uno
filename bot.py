@@ -310,10 +310,10 @@ def send_text(message):
                 else:
                     print("else2")
                     choosed == Player2_deck[int(message.text)]
+                    print choosed
                     bot.send_message(Lobby[-1], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
-                    print("else2_2")
                     classic()
                     
             def ask2_2(message):
@@ -335,10 +335,10 @@ def send_text(message):
                 else:
                     print("else2")
                     choosed == Player2_deck[int(message.text)]
+                    print choosed
                     bot.send_message(Lobby[-1], choosed)
                     Player_now_UCard_Color = choosed[-1]
                     Player_now_UCard_Number = choosed[-2]
-                    print("else2_2")
                     classic()
                     
 
