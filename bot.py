@@ -409,6 +409,5 @@ def send_text(message):
         while int(len(Lobby)) < minPlayers:
             print("not enough")
             return
-        while len(Lobby) == int("2"):
-            uno_start()
+        uno_start()
 bot.polling()
