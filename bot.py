@@ -23,6 +23,7 @@ def send_text(message):
         user_id = message.chat.id
         zero_str = ("0")
         holder = message.chat.first_name + " | " + message.chat.last_name
+        holder = str(holder)
         zero = int(zero_str)
         test2 = [((user_id), (zero), (holder))]
         cursor.executemany("INSERT INTO list VALUES (?,?,?)", test2)
