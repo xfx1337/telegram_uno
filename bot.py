@@ -1,411 +1,113 @@
-import random
-global Player_now_UCard_Color
-global Player_now_UCard_Number
-global Player_last_UCard_Color
-global Player_last_UCard_Number
-global Lobby_now
-global Player1_deck
-global Player2_deck
-global choosed
-global PNC
-global Lobby
-global Lobby_now
-def choose_card():
-    card1 = ["reverse", "red"]
-    card2 = ["reverse", "green"]
-    card3 = ["reverse", "yellow"]
-    card4 = ["reverse", "blue"]
-
-    card5 = ["pass", "red"]
-    card6 = ["pass", "green"]
-    card7 = ["pass", "yellow"]
-    card8 = ["pass", "blue"]
-
-    card9 = ["0", "red"]
-    card10 = ["0", "green"]
-    card11 = ["0", "yellow"]
-    card12 = ["0", "blue"]
-
-    card13 = ["1", "red"]
-    card14 = ["1", "green"]
-    card15 = ["1", "yellow"]
-    card16 = ["1", "blue"]
-
-    card17 = ["2", "red"]
-    card18 = ["2", "green"]
-    card19 = ["2", "yellow"]
-    card20 = ["2", "blue"]
-
-    card21 = ["3", "red"]
-    card22 = ["3", "green"]
-    card23 = ["3", "yellow"]
-    card24 = ["3", "blue"]
-
-    card25 = ["4", "red"]
-    card26 = ["4", "green"]
-    card27 = ["4", "yellow"]
-    card28 = ["4", "blue"]
-
-    card29 = ["5", "red"]
-    card30 = ["5", "green"]
-    card31 = ["5", "yellow"]
-    card32 = ["5", "blue"]
-
-    card33 = ["6", "red"]
-    card34 = ["6", "green"]
-    card35 = ["6", "yellow"]
-    card36 = ["6", "blue"]
-
-    card37 = ["7", "red"]
-    card38 = ["7", "green"]
-    card39 = ["7", "yellow"]
-    card40 = ["7", "blue"]
-
-    card41 = ["8", "red"]
-    card42 = ["8", "green"]
-    card43 = ["8", "yellow"]
-    card44 = ["8", "blue"]
-
-    card45 = ["9", "red"]
-    card46 = ["9", "green"]
-    card47 = ["9", "yellow"]
-    card48 = ["9", "blue"]
-
-    card49 = ["+4", "+4"]
-    card50 = ["change", "change"]
-
-    cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24, card25, card26, card27, card28, card29, card30, card31, card32, card33, card34, card35, card36, card37, card38, card39, card40, card41, card42, card43, card44, card45, card46, card47, card48, card49, card50]
-    card_nw = random.choice(cards)
-    return card_nw
-import os
+import os, time
 import telebot
-from telebot import *
-Lobby = ([])
-minPlayers = int("2")
-bot = telebot.TeleBot("964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk")
+import sqlite3
+from SimpleQIWI import *
+from time import sleep
+from telebot import types
+bot = telebot.TeleBot('964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk')
+newspath = input('Enter path to message to send to user as News!:')
+keyboard1 = telebot.types.ReplyKeyboardMarkup(True, False)
+keyboard1.row('Поддержка', 'Меню')
+keyboard1.row('Баланс', 'Пополнить', 'Новости')
+keyboard1.row('Создать карту')
+keyboard1.row('Снять с карты')
 @bot.message_handler(commands=['start'])
 def start_message(message):
-    bot.send_message(message.chat.id, "Пиши Lobby для попадания в Lobby")
+    bot.send_message(message.chat.id, msg, reply_markup=keyboard1)
+
 @bot.message_handler(content_types=['text'])
 def send_text(message):
-    def main():
-            global Player_now_UCard_Color
-            global Player_now_UCard_Number
-            global Player_last_UCard_Color
-            global Player_last_UCard_Number
-            global Lobby_now
-            global Player1_deck
-            global Player2_deck
-            global choosed
-            global PNC
-            global Lobby
-            global Lobby_now
-            def classic_true():
-                global Player_now_UCard_Color
-                global Player_now_UCard_Number
-                global Player_last_UCard_Color
-                global Player_last_UCard_Number
-                global Lobby_now
-                global Player1_deck
-                global Player2_deck
-                global choosed
-                global PNC
-                global Lobby
-                global Lobby_now
-                if (Player_now_UCard_Number == "+4") or (Player_now_UCard_Number == "change") or (Player_now_UCard_Number == "+2") or (Player_now_UCard_Number == "pass") or (Player_now_UCard_Number == "reverse"):
-                    for user in Lobby:
-                        bot.send_message(user, "Карта ходящего игрока:")
-                        bot.send_message(user, choosed)
-                    if choosed[-1] == "+4":
-                        if Lobby_now == Lobby[-2]:
-                            Player1_cards = int(Player1_cards) - int("1")
-                            Player2_cards = int(Player2_cards) + int("4")
-                            color_send = bot.send_message(Lobby[-2], "Выбери цвет(blue, red, yellow, blue):")
-                            bot.register_next_step_handler(color_send, pluse4_1_color())
-                            def pluse_1_color():
-                                global Player_now_UCard_Color
-                                global Player_now_UCard_Number
-                                global Player_last_UCard_Color
-                                global Player_last_UCard_Number
-                                global Lobby_now
-                                global Player1_deck
-                                global Player2_deck
-                                global choosed
-                                global PNC
-                                global Lobby
-                                global Lobby_now
-                                while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
-                                    return
-                                color = message.text.lower
-                                Player_last_UCard_Color = color
-                                for i in range(4):
-                                    Player2_deck.append(choose_card())
-                                Player1_deck.remove(choosed)
-                                for user in Lobby:
-                                    bot.send_message(user, "Игрок 1 сходил:")
-                                    bot.send_message(user, choosed)
-                                    bot.send_message(user, "Сменил цвет на:")
-                                    bot.send_message(user, Player_last_UCard_Color)
-                                ask()
-                        if Lobby_now == Lobby[-1]:
-                            Player2_cards = int(Player2_cards) - int("1")
-                            Player1_cards = int(Player1_cards) + int("4")
-                            color_send = bot.send_message(Lobby[-1], "Выбери цвет(blue, red, yellow, blue):")
-                            bot.register_next_step_handler(color_send, pluse4_2_color())
-                            def pluse_2_color():
-                                global Player_now_UCard_Color
-                                global Player_now_UCard_Number
-                                global Player_last_UCard_Color
-                                global Player_last_UCard_Number
-                                global Lobby_now
-                                global Player1_deck
-                                global Player2_deck
-                                global choosed
-                                global PNC
-                                global Lobby
-                                global Lobby_now
-                                while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
-                                    return
-                                color = message.text.lower
-                                Player_last_UCard_Color = color
-                                for i in range(4):
-                                    Player1_deck.append(choose_card())
-                                Player2_deck.remove(choosed)
-                                for user in Lobby:
-                                    bot.send_message(user, "Игрок 2 сходил:")
-                                    bot.send_message(user, choosed)
-                                    bot.send_message(user, "Сменил цвет на:")
-                                    bot.send_message(user, Player_last_UCard_Color)
-                                ask()
-                    if choosed[-1] == "change":
-                        if int(Lobby_now) == int(Lobby[-2]):
-                            
-                            Lobby_now == Lobby[-1]
-                            Player1_cards = int(Player1_cards) - int("1")
-                            color_ask = bot.send_message(Lobby[-2], "Выбери цвет(red, blue, green, yellow):")
-                            bot.register_next_step_handler(color_ask, change_1())
-                            def change_1():
-                                global Player_now_UCard_Color
-                                global Player_now_UCard_Number
-                                global Player_last_UCard_Color
-                                global Player_last_UCard_Number
-                                global Lobby_now
-                                global Player1_deck
-                                global Player2_deck
-                                global choosed
-                                global PNC
-                                global Lobby
-                                global Lobby_now
-                                while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
-                                    return
-                                color = message.text.lower
-                                Player_last_UCard_Color = color
-                                Player1_deck.remove(choosed)
-                                for user in Lobby:
-                                    bot.send_message(user, "Игрок 1 сходил:")
-                                    bot.send_message(user, choosed)
-                                    bot.send_message(user, "Сменил цвет на: ")
-                                    bot.send_message(user, Player_last_UCard_Color)
-                                ask()
-                        if Lobby_now == Lobby[-1]:
-                            
-                            Lobby_now == Lobby[-2]
-                            Player2_cards = int(Player2_cards) - int("1")
-                            color_ask = bot.send_message(Lobby[-1], "Выбери цвет(red, blue, green, yellow):")
-                            bot.register_next_step_handler(color_ask, change_2())
-                            def change_2():
-                                global Player_now_UCard_Color
-                                global Player_now_UCard_Number
-                                global Player_last_UCard_Color
-                                global Player_last_UCard_Number
-                                global Lobby_now
-                                global Player1_deck
-                                global Player2_deck
-                                global choosed
-                                global PNC
-                                global Lobby
-                                global Lobby_now
-                                while (message.text.lower != "blue") or (message.text.lower != "red") or (message.text.lower != "yellow") or (message.text.lower != "green"):
-                                    return
-                                color = message.text.lower
-                                Player_last_UCard_Color = color
-                                Player2_deck.remove(choosed)
-                                for user in Lobby:
-                                    bot.send_message(user, "Игрок 2 сходил:")
-                                    bot.send_message(user, choosed)
-                                    bot.send_message(user, "Сменил цвет на: ")
-                                    bot.send_message(user, Player_last_UCard_Color)
-                                ask()
-                    if choosed[1] == "+2":
-                        if Lobby_now == Lobby[-2]:
-                            Player1_cards = int(Player1_cards) - int("1")
-                            Player2_cards = int(Player2_cards) + int("2")
-                            for i in range(2):
-                                Player2_deck.append(choose_card())
-                            Player1_deck.remove(choosed)
-                            ask()
-                        if Lobby_now == Lobby[-1]:
-                            Player2_cards = int(Player2_cards) - int("1")
-                            Player1_cards = int(Player1_cards) + int("2")
-                            for i in range(2):
-                                Player1_deck.append(choose_card())
-                            Player2_deck.remove(choosed)
-                            ask()
-                    if choosed[-2] == "pass":
-                        if Lobby_now == Lobby[-2]:
-                            Player1_cards = int(Player1_cards) - int("1")
-                            for user in Lobby:
-                                bot.send_message(user, "Игрок 1 ходит снова")
-                                bot.send_message(user, "Сходил ")
-                                bot.send_message(user, choosed)
-                            ask()
-                        if Lobby_now == Lobby[-1]:
-                            Player2_cards = int(Player2_cards) - int("1")
-                            for user in Lobby:
-                                bot.send_message(user, "Игрок 2 ходит снова")
-                                bot.send_message(user, "Сходил ")
-                                bot.send_message(user, choosed)
-                            ask()
+    if message.text.lower() == 'создать карту':
+        conn = sqlite3.connect("cards.db") # или :memory: чтобы сохранить в RAM
+        cursor = conn.cursor()
+        user_id = message.chat.id
+        zero_str = ("0")
+        holder = [((message.first_name), (message.last_name))]
+        zero = int(zero_str)
+        test2 = [((user_id), (zero), (holder))]
+        cursor.executemany("INSERT INTO list VALUES (?,?,?)", test2)
+        conn.commit()
+        conn.close()
+    elif message.text.lower() == 'баланс':
+        conn = sqlite3.connect("cards.db") # или :memory: чтобы сохранить в RAM
+        cursor = conn.cursor()
+        user_id = message.chat.id
+        bot.send_message(message.chat.id, "Ваш ID:%i" % (user_id))
+        user_id2 = str(user_id)
+        sqlBalance = ("SELECT * FROM list WHERE ID LIKE '") + (user_id2) + ("%'")
+        cursor.execute(sqlBalance)
+        balance = cursor.fetchone()
+       	balance2 = [ balance[-1] ]
+       	balance3 = str(balance2)
+       	balance4 = balance3.replace("'", "")
+       	balance5 = balance4.replace("[", "")
+       	balance5 = balance5.replace("]", "")
+        balance_send = ("Баланс: ") + (balance5)
+        bot.send_message(message.chat.id, balance_send) 
+    elif message.text.lower() == 'пополнить':
+        #conn = sqlite3.connect("transfers.db") # или :memory: чтобы сохранить в RAM
+        #cursor = conn.cursor()
 
+        user_id = message.chat.id
+        token = "102bdafd326e59af4a61826098f5311e"         # https://qiwi.com/api
+        phone = "+79124862813"
+        def transfer(message):
+            conn = sqlite3.connect("transfers.db") # или :memory: чтобы сохранить в RAM
+            cursor = conn.cursor()
+            user_price_input = (message.text)
 
-            def classic():
-                global Player_now_UCard_Color
-                global Player_now_UCard_Number
-                global Player_last_UCard_Color
-                global Player_last_UCard_Number
-                global Lobby_now
-                global Player1_deck
-                global Player2_deck
-                global choosed
-                global PNC
-                global Lobby
-                global Lobby_now
-                if Lobby_now == Lobby[-2]:
-                    PNC = len(Player1_deck)
-                if Lobby_now == Lobby[-1]:
-                    PNC = len(Player2_deck)
-                if (Player_now_UCard_Color == Player_last_UCard_Color) or (Player_now_UCard_Number == Player_last_UCard_Number):
-                    classic_true()
-                elif (Player_last_UCard_Color == "x") or (Player_now_UCard_Number == "change") or (Player_now_UCard_Number == "+4"):
-                    classic_true()
-                else:
-                    ask()
-  
-            def ask2_1(message):
-                global Player_now_UCard_Color
-                global Player_now_UCard_Number
-                global Player_last_UCard_Color
-                global Player_last_UCard_Number
-                global Lobby_now
-                global Player1_deck
-                global Player2_deck
-                global choosed
-                global PNC
-                global Lobby
-                global Lobby_now
-                if message.text.lower == "take":
-                    Player1_deck.append(choose_card())
-                    ask()
-                else:
-                    print("else2")
-                    print(message.text)
-                    choosed == Player1_deck[int(message.text)]
-                    bot.send_message(Lobby[-2], choosed)
-                    Player_now_UCard_Color = choosed[-1]
-                    Player_now_UCard_Number = choosed[-2]
-                    classic()
-                    
-            def ask2_2(message):
-                global Player_now_UCard_Color
-                global Player_now_UCard_Number
-                global Player_last_UCard_Color
-                global Player_last_UCard_Number
-                global Lobby_now
-                global Player1_deck
-                global Player2_deck
-                global choosed
-                global PNC
-                global Lobby
-                global Lobby_now
-                if message.text.lower == "take":
-                    Player2_deck.append(choose_card())
-                    ask()
-                else:
-                    print("else2")
-                    print(message.text)
-                    choosed == Player2_deck[int(message.text)]
-                    bot.send_message(Lobby[-1], choosed)
-                    Player_now_UCard_Color = choosed[-1]
-                    Player_now_UCard_Number = choosed[-2]
-                    classic()
-                    
+            #user_price_input = ("1") # Здесь нужно получать значение суммы платежа от пользователя(А пока-что выставлено просто 1)
+            api = QApi(token=token, phone=phone)
+            price2 = int(user_price_input)
+            price = price2             # Минимальное значение при котором счет будет считаться закрытым
+            comment = api.bill(price)   # Создаем счет. Комментарий с которым должен быть платеж генерируе$
 
+            bot.send_message(message.chat.id, "Ваш ID:%i" % (user_id))
+            qiwi_pay= ('''
+Отправьте %i рублей на QIWI кошелёк "+79124862813" с комментарием:
+%s        
+            ''' % (price2, comment))
+            #bot.send_message(message.chat.id, "Отправьте сумму которую хотите получить на свой баланс на QIWI кошелёк: +79124862813 с комментарием(ПОКА-ЧТО МОЖНО ОТПРАВИТЬ ТОЛЬКО 1РУБЛЬ, ЗАВТРА ПОФИКШУ): %s" % (comment))
+            bot.send_message(message.chat.id, qiwi_pay)
+            api.start()                 # Начинаем прием платежей
 
+            while True:
+                if api.check(comment):  # Проверяем статус
+                    test = [((user_id), (user_price_input), (comment))]
 
+                    cursor.executemany("INSERT INTO list VALUES (?,?,?)", test)
+                    conn.commit()
+                    conn.close()
+                    conn = sqlite3.connect("balances.db") # или :memory: чтобы сохранить в RAM
+                    cursor = conn.cursor()
+#user_id = input("Enter test User ID(Telegram ID)!:")
+                    user_id2 = str(user_id)
+                    sql0 = "SELECT * FROM list WHERE ID LIKE '" + (user_id2) + ("'")
+                    cursor.execute(sql0)
+                    balance_old = (cursor.fetchone())
+                    balance_old2 = [ balance_old[-1] ]
+                    balance_old3 = str(balance_old2)
+                    balance_old4 = balance_old3.replace("'", "")
+                    balance_old5 = balance_old4.replace("[", "")
+                    balance_old6 = balance_old5.replace("]", "")
+                    balance_old7 = int(balance_old6)
+                    price3 = int(user_price_input)
+                    balance = (balance_old7) + (price3)
+                    sql = ('''
+UPDATE list
+SET BALANCE = '%i'
+WHERE ID = '%s'
+''' % (balance, user_id))
+                    cursor.execute(sql)
+                    conn.commit()
+                    conn.close()
+                    break
+        sent = bot.send_message(message.chat.id, "Введите сумму для перевода на ваш баланс!")
 
+        bot.register_next_step_handler(sent, transfer)
+        sleep(1)
+    else:
+        bot.send_message(message.chat.id, 'Упс! Ты ввёл не правельную комманду! Пиши "Меню" что получить подсказку!')
 
-
-
-            def ask():
-                global Player_now_UCard_Color
-                global Player_now_UCard_Number
-                global Player_last_UCard_Color
-                global Player_last_UCard_Number
-                global Lobby_now
-                global Player1_deck
-                global Player2_deck
-                global choosed
-                global PNC
-                global Lobby
-                global Lobby_now
-                if Lobby_now == Lobby[-2]:
-                    for card in range(len(Player1_deck)):
-                        string = str(card) + " " + str(Player1_deck[card])
-                        bot.send_message(Lobby[-2], string)
-                    num_sent = bot.send_message(Lobby[-2], "Выбери карту(цифра или пропиши take что взять карту из колоды):")
-                    bot.register_next_step_handler(num_sent, ask2_1)
-                if Lobby_now == Lobby[-1]:
-                    for card in range(len(Player2_deck)):
-                        string = str(card) + " " + str(Player2_deck[card])
-                        bot.send_message(Lobby[-1], string)
-                    num_sent = bot.send_message(Lobby[-1], "Выбери карту(цифра или ake что бы взять карту из колоды):")
-                    choosed = []
-                    bot.register_next_step_handler(num_sent, ask2_2)
-            ask()
-    def uno_start():
-            global Player_now_UCard_Color
-            global Player_now_UCard_Number
-            global Player_last_UCard_Color
-            global Player_last_UCard_Number
-            global Lobby_now
-            global Player1_deck
-            global Player2_deck
-            global choosed
-            global PNC
-            global Lobby
-            global Lobby_now
-            Player_now_UCard_Color = "x"
-            Player_now_UCard_Number = "x"
-            Player_last_UCard_Color = "x"
-            Player_last_UCard_Number = "x"
-            choosed = []
-            Player1_deck = []
-            Player2_deck = []
-            PNC = int("7")
-            for i in range(7):
-                Player1_deck.append(choose_card())
-            for i in range(7):
-                Player2_deck.append(choose_card())
-            Lobby_now = Lobby[-2]
-            for user in Lobby:
-                bot.send_message(user, "Игрок 1 ходит")
-            main()
-    if message.text.lower() == "lobby":
-        print("registered")
-        Lobby.append(str(message.chat.id))
-        minPlayers = int("2")
-        while int(len(Lobby)) < minPlayers:
-            print("not enough")
-            return
-        uno_start()
+#keyboard = types.InlineKeyboardMarkup();
 bot.polling()
