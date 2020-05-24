@@ -1,6 +1,7 @@
 import os, time
 import telebot
 import sqlite3
+import SimpleQIWI
 from SimpleQIWI import *
 from time import sleep
 from telebot import types
