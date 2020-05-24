@@ -6,7 +6,6 @@ from SimpleQIWI import *
 from time import sleep
 from telebot import types
 bot = telebot.TeleBot('964957577:AAHQlnTDLdyLxDsrnsSE8M0HcxRwMup6YDk')
-newspath = input('Enter path to message to send to user as News!:')
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True, False)
 keyboard1.row('Поддержка', 'Меню')
 keyboard1.row('Баланс', 'Пополнить', 'Новости')
