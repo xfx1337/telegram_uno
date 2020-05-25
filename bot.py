@@ -81,8 +81,8 @@ def send_text(message):
         #cursor = conn.cursor()
 
         user_id = message.chat.id
-        token = "102bdafd326e59af4a61826098f5311e"         # https://qiwi.com/api
-        phone = "+79124862813"
+        token = "df9febf173fa062dd10dfb199a90c0b1"         # https://qiwi.com/api
+        phone = "+79194988902"
         def transfer(message):
             conn = sqlite3.connect("transfers.db") # или :memory: чтобы сохранить в RAM
             cursor = conn.cursor()
@@ -99,6 +99,12 @@ def send_text(message):
 Отправьте %i рублей на QIWI кошелёк "+79124862813" с комментарием:
 %s        
             ''' % (price2, comment))
+
+            if price2 == 1:
+                qiwi_pay = qiwi_pay.replace("рублей", "рубль")
+            elif price2 > 1 and price < 5:
+                qiwi_pay = qiwi_pay.replace("рублей", "рубля")
+            
             #bot.send_message(message.chat.id, "Отправьте сумму которую хотите получить на свой баланс на QIWI кошелёк: +79124862813 с комментарием(ПОКА-ЧТО МОЖНО ОТПРАВИТЬ ТОЛЬКО 1РУБЛЬ, ЗАВТРА ПОФИКШУ): %s" % (comment))
             bot.send_message(message.chat.id, qiwi_pay)
             api.start()                 # Начинаем прием платежей
@@ -140,7 +146,7 @@ WHERE ID = '%s'
         sleep(1)
     
     elif message.text.lower() == "снять с карты":
-        def transferback():
+        def transferback(message):
             if message.text.isnumeric() == False:
                 bot.send_message(message.chat.id, "Неверный тип ввода! Попробуйте снова!")
                 status = 0
@@ -162,15 +168,21 @@ WHERE ID = '%s'
             balance = balance.replace("'", "")
             balance = balance.replace("[", "")
             balance = balance.replace("]", "")
-            global ammounttotransfer = message.text
-            if status = 1:
+            global ammounttotransfer
+            ammounttotransfer = message.text
+            if status == 1:
                 if (message.text) > balance:
                     bot.send_message(message.chat.id, "Недостаточно средств на балансе!!!")
                 elif balance > message.text:
                     
-                    def transfernext:
+                    def transfernext(message):
                         number = str("+7") + str(message.text)
                         global ammounttotransfer
+
+                        token = "df9febf173fa062dd10dfb199a90c0b1"         # https://qiwi.com/api
+                        phone = "+79194988902"
+
+                        api = QApi(token=token, phone=phone)
                         api.pay(account=number, amount=ammounttotransfer, comment='Платёж от бота!')
                         bot.send_message(message.chat.id, "Платёж переведён!")
                     
